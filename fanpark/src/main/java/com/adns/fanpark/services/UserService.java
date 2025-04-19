@@ -14,9 +14,12 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	/*//Autowired Internal
-	 * public UserService(UserRepository userRepository) { this.userRepository =
-	 * userRepository; }
+	/*
+	  //Autowired Internal
+	  public UserService(UserRepository userRepository) { 
+	      this.userRepository = userRepository; 
+	  }
+	  
 	 */
 	
 	public List<User> getAllUser(){
@@ -26,4 +29,23 @@ public class UserService {
 	public User getUserById(Integer id) {
 		return userRepository.findById(id).get();
 	}
+	
+	public User createUser(User user) {
+		return userRepository.save(user);
+	}
+	
+	public User deleteUserById(Integer id) {
+		
+		User userToDelete = userRepository.findById(id).orElse(null);
+		
+		if(userToDelete == null) {
+			// throw custom exception
+			return null;
+		}
+		
+		userRepository.deleteById(id);
+		
+		return userToDelete;
+	}
+	
 }
