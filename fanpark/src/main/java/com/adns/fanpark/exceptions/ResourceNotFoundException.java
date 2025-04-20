@@ -5,13 +5,13 @@ public class ResourceNotFoundException extends RuntimeException{
 	
 	private String resourceName;
 	private String fieldName;
-	private Long fieldId;
+	private Integer fieldId;
 	
-	public ResourceNotFoundException(String resourceName, String fieldName, Long fieldId) {
-		super(String.format("%s not found with %s : %s", resourceName, fieldName, fieldId));
+	public ResourceNotFoundException(String resourceName, String fieldName, Integer id) {
+		super(String.format("%s not found with %s : %s", resourceName, fieldName, id));
 		this.resourceName = resourceName;
 		this.fieldName = fieldName;
-		this.fieldId = fieldId;
+		this.fieldId = id;
 	}
 	
 	
@@ -31,11 +31,11 @@ public class ResourceNotFoundException extends RuntimeException{
 		this.fieldName = fieldName;
 	}
 
-	Long getFieldId() {
+	Integer getFieldId() {
 		return fieldId;
 	}
 
-	void setFieldId(Long fieldId) {
+	void setFieldId(Integer fieldId) {
 		this.fieldId = fieldId;
 	}
 

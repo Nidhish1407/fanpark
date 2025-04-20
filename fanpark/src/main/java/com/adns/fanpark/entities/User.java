@@ -34,11 +34,11 @@ public class User {
 		this.userName = userName;
 	}
 
-	public int getUser_id() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUser_id(int userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 

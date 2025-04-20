@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.adns.fanpark.entities.User;
+import com.adns.fanpark.exceptions.ResourceNotFoundException;
 import com.adns.fanpark.repositories.UserRepository;
 
 @Service
@@ -47,6 +48,18 @@ public class UserService {
 		userRepository.deleteById(id);
 		
 		return userToDelete;
+	}
+	
+	public User updateUser(Integer id, User user) {
+		
+		User userToUpdate = userRepository.findById(id)
+										  .orElseThrow(() -> new ResourceNotFoundException("User","User Id", id));
+		
+		userToUpdate.setUserId(user.getUserId());
+		userToUpdate.setUserName(user.getUserName());
+		User updatedUser = userRepository.save(userToUpdate);
+		
+		return updatedUser;
 	}
 	
 }
