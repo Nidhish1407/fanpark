@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +30,7 @@ public class UserController {
 	private UserService userService;
 
 	/*
-	 * @GetMapping("/") public String hello() { return "welcome"; }
+	 *  @GetMapping("/") public String hello() { return "welcome"; }
 	 */
 	
 	@GetMapping("/") 
@@ -44,7 +45,7 @@ public class UserController {
 	
 	@PostMapping("/")
     public ResponseEntity<User> createUser(@RequestBody User user){
-    	
+    	System.out.println(user.getUser_id() + user.getUserName());
     	User savedUser = userService.createUser(user);
     	
     	return new ResponseEntity<>(savedUser,HttpStatus.CREATED);
